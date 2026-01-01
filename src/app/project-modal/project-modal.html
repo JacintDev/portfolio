@@ -1,0 +1,76 @@
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-400/50 backdrop-blur-sm animate-in fade-in duration-200"
+  (click)="closeModal()"
+>
+  <div class="container max-w-2xl mx-auto bg-white p-6 rounded-md relative max-h-[90vh]">
+    <span class="text-neutral-800 text-sm px-2.5 py-1 bg-emerald-100 rounded-md"
+      >2024 - Present</span
+    >
+    <button
+      class="absolute px-2 py-1 bg-neutral-100 text-neutral-800 rounded-md cursor-pointer top-4 right-4"
+      (click)="closeModal()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-x h-4 w-4"
+        aria-hidden="true"
+      >
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+    <div class="overflow-y-auto max-h-[80vh] custom-scrollbar pr-4 md:pr4-0">
+      <p class="text-2xl text-neutral-800 font-semibold tracking-widest my-4">{{ project.name }}</p>
+      <p class="text-neutral-500 text-base/6">{{ project.description }}</p>
+      <div class="mt-8">
+        <p class="font-semibold text-lg">Key features</p>
+      </div>
+      <div class="flex flex-col gap-2 mt-4">
+        <div class="flex gap-2" *ngFor="let key of project.keyFeatures">
+          <div class="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0 mt-2"></div>
+          <span [innerHTML]="key" class="text-justify hyphens-auto text-neutral-600"></span>
+        </div>
+      </div>
+      <div class="my-6">
+        <p class="font-semibold text-lg mb-4">Technologies used</p>
+        <div class="flex gap-2 mt-2 flex-wrap">
+          <span
+            class="text-emerald-700 px-2.5 py-1 bg-emerald-100 rounded-md"
+            *ngFor="let technologie of project.technologies"
+            >{{ technologie }}</span
+          >
+        </div>
+      </div>
+      <button
+        class="flex bg-emerald-600 items-center px-2.5 py-1 rounded-md text-white hover:bg-emerald-700 cursor-pointer"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-external-link w-4 h-4 mr-2"
+          aria-hidden="true"
+        >
+          <path d="M15 3h6v6"></path>
+          <path d="M10 14 21 3"></path>
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        </svg>
+        <span>Source code</span>
+      </button>
+    </div>
+  </div>
+</div>

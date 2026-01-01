@@ -1,0 +1,55 @@
+<div class="container max-w-6xl mx-auto py-8">
+  <p class="uppercase font-semibold tracking-widest text-emerald-600 text-center p-8">Portfolio</p>
+  <p class="text-neutral-900 text-4xl font-semibold text-center">Featured Projects</p>
+  <span class="text-center block text-neutral-700 my-4"
+    >A selection of projects I've worked on, showcasing my expertise in building.</span
+  >
+  <div class="grid md:grid-cols-3 py-4 gap-12">
+    <div
+      class="group bg-white rounded-2xl shadow-sm border border-neutral-100 cursor-pointer hover:shadow-lg transition-all"
+      *ngFor="let project of Projects"
+      (click)="openProject(project)"
+    >
+      <div class="">
+        <div
+          class="h-48 bg-neutral-200 relative overflow-hidden rounded-t-2xl flex items-center justify-center"
+        >
+          <div
+            class="absolute top-0 right-0 -mr-10 -mt-10 w-48 h-48 bg-emerald-600 rounded-full blur-3xl opacity-20"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 -ml-10 -mb-10 w-48 h-48 bg-blue-500 rounded-full blur-3xl opacity-20"
+          ></div>
+          <div class="relative z-10 h-full flex items-center justify-center">
+            <span
+              class="text-neutral-800 font-mono text-xl tracking-widest font-bold text-center"
+              >{{ project.name }}</span
+            >
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-neutral-600 mb-4 line-clamp-2">
+            {{ project.description }}
+          </p>
+          <div class="flex gap-2 flex-wrap">
+            <span
+              class="px-2.5 py-1 text-neutral-800 bg-neutral-100 rounded-md text-xs"
+              *ngFor="let tech of project.technologies | slice : 0 : 4"
+              >{{ tech }}</span
+            >
+            <span
+              class="px-2.5 py-1 text-neutral-700 bg-neutral-100 rounded-md text-xs"
+              *ngIf="project.technologies.length > 4"
+              >+{{ project.technologies.length - 4 }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-project-modal
+    *ngIf="selectedProject"
+    [project]="selectedProject"
+    (close)="closeProjectModal()"
+  ></app-project-modal>
+</div>

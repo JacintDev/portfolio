@@ -1,0 +1,83 @@
+<div
+  class="sticky top-0 z-50 bg-white/95 backdrop-blur-xs transition-shadow duration-1000 ease-in-out"
+  [class.shadow-md]="isScrolled"
+  [class.shadow-none]="!isScrolled"
+>
+  <div class="container max-w-6xl mx-auto py-4 px-4 font-sans">
+    <div class="navbar-desktop hidden md:flex justify-between gap-2">
+      <div class="logo font-semibold text-xl tracking-tight">
+        <span class="text-emerald-600"><</span
+        ><span
+          (click)="scrollTo('welcome')"
+          class="text-neutral-900 hover:text-neutral-400 transition-colors cursor-pointer"
+          >Jacint</span
+        ><span class="text-emerald-600">/></span>
+      </div>
+      <ul class="hidden md:flex gap-x-8 items-center">
+        <li>
+          <a
+            (click)="scrollTo('about-me')"
+            class="text-md text-neutral-700 cursor-pointer hover:text-neutral-900 trainsition-colors"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            (click)="scrollTo('expertise')"
+            class="text-md text-neutral-700 cursor-pointer hover:text-neutral-900 transition-colors"
+            >Skills</a
+          >
+        </li>
+        <li>
+          <a (click)="scrollTo('portfolio')" class="text-md text-neutral-700 cursor-pointer"
+            >Projects</a
+          >
+        </li>
+        <li>
+          <a
+            (click)="scrollTo('contact')"
+            class="text-md text-neutral-700 cursor-pointer hover:text-neutral-900 transition-colors"
+            >Contact</a
+          >
+        </li>
+        <li>
+          <button
+            (click)="scrollTo('contact')"
+            class="inline-flex font-semibold bg-emerald-600 gap-2 py-2 items-center justify-center text-white px-6 rounded-md cursor-pointer hover:bg-emerald-700 transition-colors"
+          >
+            Hire Me
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-mobile md:hidden flex justify-between items-center">
+      <div class="logo font-semibold text-xl tracking-tight">
+        <span class="text-emerald-600"><</span><span class="text-neutral-900">Jacint</span
+        ><span class="text-emerald-600">/></span>
+      </div>
+      <button
+        (click)="toggleMenu()"
+        class="p-2 text-neutral-800 inline-flex items-center justify-center"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="navbar-mobile-menu md:hidden border-t-1 border-neutral-300 mt-2 overflow-hidden transition-all duration-300 ease-in-out"
+      [class.max-h-screen]="isOpenMenu"
+      [class.max-h-0]="!isOpenMenu"
+    >
+      <ul class="flex flex-col gap-6 p-4 text-neutral-600">
+        <li><a (click)="scrollTo('about-me')" class="cursor-pointer">About</a></li>
+        <li><a (click)="scrollTo('expertise')" class="cursor-pointer">Skills</a></li>
+        <!-- <li><a href="#">Projects</a></li> -->
+        <li><a (click)="scrollTo('contact')" class="cursor-pointer">Contact</a></li>
+        <li class="inline-flex items-center justify-center bg-emerald-600 rounded-md">
+          <button class="text-white p-2 font-semibold">Hire Me</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
