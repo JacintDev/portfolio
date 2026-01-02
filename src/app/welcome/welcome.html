@@ -37,12 +37,14 @@
 
       <div class="buttons flex gap-x-8 items-center justify-start">
         <button
+          (click)="scrollTo('portfolio')"
           class="inline-flex justify-center items-center mt-8 px-8 py-2 bg-emerald-600 rounded-md text-white cursor-pointer font-medium text-xl hover:bg-emerald-700 transition-colors"
         >
           View My Work
         </button>
         <button
           class="inline-flex justify-center items-center mt-8 px-8 py-2 rounded-md cursor-pointer font-medium text-xl border border-neutral-300 text-neutral-600 hover:bg-neutral-200 transition-colors"
+          (click)="downloadCV()"
         >
           Download My CV
         </button>
