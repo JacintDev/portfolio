@@ -63,16 +63,16 @@ export class Navbar implements AfterViewInit {
     this.menuTl = this.animationService.createTimeline({ paused: true, reversed: true });
 
     this.menuTl
-      .to(line1, { top: '50%', rotate: 45, duration: 0.3, ease: 'power2.inOut' }, 0)
+      .to(line1, { top: '50%', rotate: 45, duration: 0.3, ease: 'power3.inOut' }, 0)
       .to(line2, { opacity: 0, duration: 0.1 }, 0)
       .to(line3, { top: '50%', rotate: -45, duration: 0.3, ease: 'power2.inOut' }, 0)
       .to(
         menuEl,
         {
-          height: 'auto',
+          height: '300px',
           opacity: 1,
           duration: 0.3,
-          ease: 'power1.inOut',
+          ease: 'power3.inOut',
         },
         0
       )
@@ -83,7 +83,7 @@ export class Navbar implements AfterViewInit {
           opacity: 1,
           duration: 0.4,
           stagger: 0.1,
-          ease: 'back.out(1.7)',
+          ease: 'power3.out',
         },
         '-=0.3'
       );
