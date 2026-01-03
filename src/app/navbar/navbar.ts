@@ -35,8 +35,32 @@ export class Navbar implements AfterViewInit {
     // Wait for view init
     this.ngZone.runOutsideAngular(() => {
       setTimeout(() => {
+        this.initDesktopAnimation();
         this.initMenuAnimation();
       }, 100);
+    });
+  }
+
+  private initDesktopAnimation() {
+    const el = this.navbarElement.nativeElement;
+
+    // Navbar slide-in animation
+    gsap.from(el, {
+      yPercent: -100,
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power3.out',
+      clearProps: 'none',
+    });
+
+    // Staggered animation for nav items
+    gsap.from('.nav-item', {
+      opacity: 0,
+      y: -20,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power2.out',
+      delay: 0.5,
     });
   }
 
