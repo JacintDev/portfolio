@@ -1,12 +1,16 @@
-<div class="container max-w-6xl mx-auto py-8 px-4 md:px-0">
-  <p class="uppercase font-semibold tracking-widest text-emerald-600 text-center p-8">Portfolio</p>
-  <p class="text-neutral-900 text-4xl font-semibold text-center">Featured Projects</p>
-  <span class="text-center block text-neutral-700 my-4"
-    >A selection of projects I've worked on, showcasing my expertise in building.</span
-  >
+<div #portfolioSection class="container max-w-6xl mx-auto py-8 px-4 md:px-0">
+  <div class="section-header">
+    <p class="uppercase font-semibold tracking-widest text-emerald-600 text-center p-8">
+      Portfolio
+    </p>
+    <p class="text-neutral-900 text-4xl font-semibold text-center">Featured Projects</p>
+    <span class="text-center block text-neutral-700 my-4"
+      >A selection of projects I've worked on, showcasing my expertise in building.</span
+    >
+  </div>
   <div class="grid md:grid-cols-3 py-4 gap-12">
     <div
-      class="group bg-white rounded-2xl shadow-sm border border-neutral-100 cursor-pointer hover:shadow-lg transition-all"
+      class="project-card group bg-white rounded-2xl shadow-sm border border-neutral-100 cursor-pointer hover:shadow-lg transition-all"
       *ngFor="let project of Projects"
       (click)="openProject(project)"
     >

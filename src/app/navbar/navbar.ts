@@ -1,15 +1,13 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   ElementRef,
   HostListener,
   inject,
-  NgZone,
-  PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
-import gsap from 'gsap';
+import { AnimationService } from '../services/animation.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,8 +19,7 @@ export class Navbar implements AfterViewInit {
   public isOpenMenu: boolean = false;
   public isScrolled: boolean = false;
 
-  private ngZone = inject(NgZone);
-  private platformId = inject(PLATFORM_ID);
+  private animationService = inject(AnimationService);
 
   @ViewChild('mobileMenu') mobileMenu!: ElementRef;
   @ViewChild('sticky') navbarElement!: ElementRef;
@@ -30,14 +27,9 @@ export class Navbar implements AfterViewInit {
   private menuTl: gsap.core.Timeline | null = null;
 
   ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    // Wait for view init
-    this.ngZone.runOutsideAngular(() => {
-      setTimeout(() => {
-        this.initDesktopAnimation();
-        this.initMenuAnimation();
-      }, 100);
+    this.animationService.runOutsideAngular(() => {
+      this.initDesktopAnimation();
+      this.initMenuAnimation();
     });
   }
 
@@ -45,7 +37,7 @@ export class Navbar implements AfterViewInit {
     const el = this.navbarElement.nativeElement;
 
     // Navbar slide-in animation
-    gsap.from(el, {
+    this.animationService.from(el, {
       yPercent: -100,
       opacity: 0,
       duration: 1.2,
@@ -54,12 +46,8 @@ export class Navbar implements AfterViewInit {
     });
 
     // Staggered animation for nav items
-    gsap.from('.nav-item', {
-      opacity: 0,
-      y: -20,
+    this.animationService.staggerFadeInUp('.nav-item', {
       duration: 0.6,
-      stagger: 0.1,
-      ease: 'power2.out',
       delay: 0.5,
     });
   }
@@ -72,16 +60,12 @@ export class Navbar implements AfterViewInit {
     const line2 = this.navbarElement.nativeElement.querySelector('.line-2');
     const line3 = this.navbarElement.nativeElement.querySelector('.line-3');
 
-    this.menuTl = gsap.timeline({ paused: true, reversed: true });
+    this.menuTl = this.animationService.createTimeline({ paused: true, reversed: true });
 
     this.menuTl
-
       .to(line1, { top: '50%', rotate: 45, duration: 0.3, ease: 'power2.inOut' }, 0)
-
       .to(line2, { opacity: 0, duration: 0.1 }, 0)
-
       .to(line3, { top: '50%', rotate: -45, duration: 0.3, ease: 'power2.inOut' }, 0)
-
       .to(
         menuEl,
         {
@@ -92,7 +76,6 @@ export class Navbar implements AfterViewInit {
         },
         0
       )
-
       .to(
         items,
         {
@@ -105,7 +88,7 @@ export class Navbar implements AfterViewInit {
         '-=0.3'
       );
 
-    gsap.set(items, { y: -20, opacity: 0 });
+    this.animationService.set(items, { y: -20, opacity: 0 });
   }
 
   public toggleMenu(): void {

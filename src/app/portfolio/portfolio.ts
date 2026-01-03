@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { Project } from '../interfaces/project.interface';
 import { CommonModule } from '@angular/common';
 import { ProjectModal } from '../project-modal/project-modal';
+import { AnimationService } from '../services/animation.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -9,7 +10,12 @@ import { ProjectModal } from '../project-modal/project-modal';
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.css',
 })
-export class Portfolio {
+export class Portfolio implements AfterViewInit {
+  private animationService = inject(AnimationService);
+  private animationsInitialized = false;
+
+  @ViewChild('portfolioSection') portfolioSection!: ElementRef;
+
   selectedProject: Project | null = null;
   Projects: Project[] = [
     {
@@ -52,6 +58,35 @@ export class Portfolio {
       keyFeatures: ['Responsive Design', 'Project Gallery', 'Contact Form'],
     },
   ];
+
+  ngAfterViewInit(): void {
+    // Use setTimeout to ensure *ngFor has rendered the elements
+    this.animationService.runOutsideAngular(() => {
+      this.initAnimations();
+    }, 200);
+  }
+
+  private initAnimations(): void {
+    const section = this.portfolioSection.nativeElement;
+    const header = section.querySelector('.section-header');
+    const projectCards = section.querySelectorAll('.project-card');
+
+    // Scroll-triggered animation for section header
+    if (header) {
+      this.animationService.scrollTriggerFadeInUp(header, section, {
+        duration: 0.8,
+      });
+    }
+
+    // Scroll-triggered stagger for project cards
+    if (projectCards.length > 0) {
+      this.animationService.scrollTriggerStagger(projectCards, section, {
+        duration: 0.6,
+        delay: 0.2,
+        stagger: 0.15,
+      });
+    }
+  }
 
   openProject(project: Project) {
     this.selectedProject = project;
