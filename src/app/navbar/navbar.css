@@ -1,1 +1,26 @@
+.hamburger-btn {
+  position: relative;
+  cursor: pointer;
+}
 
+.line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  transform-origin: center;
+}
+
+.line-1 {
+  top: 30%;
+}
+.line-2 {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.line-3 {
+  top: 70%;
+}
