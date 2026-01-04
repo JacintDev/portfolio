@@ -23,23 +23,23 @@ export class Expertise implements AfterViewInit {
 
     // Scroll-triggered animation for section header
     this.animationService.scrollTriggerFadeInUp(section.querySelector('.section-header'), section, {
-      duration: 0.8,
+      duration: 1,
     });
 
     // Scroll-triggered animation for skill cards (backend & frontend)
     this.animationService.scrollTriggerFadeInLeft(section.querySelector('.backend'), section, {
-      duration: 0.8,
+      duration: 2.0,
       delay: 0.2,
     });
 
     this.animationService.scrollTriggerFadeInRight(section.querySelector('.frontend'), section, {
-      duration: 0.8,
+      duration: 2.0,
       delay: 0.2,
     });
 
     // Scroll-triggered animation for tools section
     this.animationService.scrollTriggerFadeInUp(section.querySelector('.tools-section'), section, {
-      duration: 0.8,
+      duration: 1.8,
       delay: 0.3,
     });
 

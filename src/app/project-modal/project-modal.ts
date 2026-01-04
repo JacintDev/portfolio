@@ -12,6 +12,10 @@ export class ProjectModal {
   @Input({ required: true }) project!: Project;
   @Output() close = new EventEmitter<void>();
 
+  openLink(url: string) {
+    window.open(url, '_blank');
+  }
+
   closeModal() {
     this.close.emit();
   }

@@ -26,7 +26,7 @@ export class AboutMe implements AfterViewInit {
     // Scroll-triggered animation for experience cards
     if (experienceCards.length > 0) {
       this.animationService.scrollTriggerStagger(experienceCards, section, {
-        duration: 0.6,
+        duration: 0.8,
         stagger: 0.15,
       });
     }
@@ -34,7 +34,7 @@ export class AboutMe implements AfterViewInit {
     // Scroll-triggered animation for about-me text
     if (aboutMeText) {
       this.animationService.scrollTriggerFadeInRight(aboutMeText, section, {
-        duration: 0.8,
+        duration: 1.0,
         delay: 0.2,
       });
     }

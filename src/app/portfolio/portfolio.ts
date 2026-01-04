@@ -53,7 +53,7 @@ export class Portfolio implements AfterViewInit {
       id: 2,
       name: 'Personal Website',
       description: 'A personal portfolio website to showcase my projects and skills.',
-      url: 'https://myportfolio.com',
+      url: 'https://github.com/JacintDev/portfolio',
       technologies: ['Angular', 'TypeScript', 'CSS'],
       keyFeatures: ['Responsive Design', 'Project Gallery', 'Contact Form'],
     },
