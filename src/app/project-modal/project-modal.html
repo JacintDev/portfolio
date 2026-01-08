@@ -2,7 +2,10 @@
   class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-400/50 backdrop-blur-sm animate-in fade-in duration-200"
   (click)="closeModal()"
 >
-  <div class="container max-w-2xl mx-auto bg-white p-6 rounded-md relative max-h-[90vh]">
+  <div
+    class="container max-w-2xl mx-auto bg-white p-6 rounded-md relative max-h-[90vh]"
+    (click)="$event.stopPropagation()"
+  >
     <span class="text-neutral-800 text-sm px-2.5 py-1 bg-emerald-100 rounded-md"
       >2024 - Present</span
     >
