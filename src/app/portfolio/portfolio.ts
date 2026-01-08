@@ -52,10 +52,15 @@ export class Portfolio implements AfterViewInit {
     {
       id: 2,
       name: 'Personal Website',
-      description: 'A personal portfolio website to showcase my projects and skills.',
+      description:
+        'Developed a responsive single-page application built with Angular and TypeScript. It features a modern UI styled with Tailwind CSS, advanced GSAP animations, and seamless contact functionality via EmailJS.',
       url: 'https://github.com/JacintDev/portfolio',
-      technologies: ['Angular', 'TypeScript', 'CSS'],
-      keyFeatures: ['Responsive Design', 'Project Gallery', 'Contact Form'],
+      technologies: ['Angular', 'TypeScript', 'Tailwind CSS', 'GSAP', 'EmailJS'],
+      keyFeatures: [
+        'Fully Responsive & Mobile-First Layout',
+        'High-Performance GSAP Animations',
+        'Serverless Contact Integration',
+      ],
     },
   ];
 
