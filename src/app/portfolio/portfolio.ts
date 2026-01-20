@@ -20,10 +20,10 @@ export class Portfolio implements AfterViewInit {
   Projects: Project[] = [
     {
       id: 1,
-      name: 'IoT-based Real-Time Web Application',
+      name: 'AI-Powered Workout Optimization',
       description:
         'Developed an ESP32-based fitness tracking system with real-time heart rate and motion data collection, WiFi data transmission, and backend integration using ASP.NET and Angular, incorporating LSTM-based models for exercise analysis.',
-      url: 'https://github.com/Jacint69/',
+      url: 'https://github.com/JacintDev/workout-optimization',
       technologies: [
         'C#',
         'ASP.NET Core',
@@ -58,8 +58,21 @@ export class Portfolio implements AfterViewInit {
       technologies: ['Angular', 'TypeScript', 'Tailwind CSS', 'GSAP', 'EmailJS'],
       keyFeatures: [
         'Fully Responsive & Mobile-First Layout',
-        'High-Performance GSAP Animations',
+        'High-Performance<span class="text-neutral-700 font-semibold">GSAP Animations</span>',
         'Serverless Contact Integration',
+      ],
+    },
+    {
+      id: 3,
+      name: 'Automated E2E Testing Framework',
+      description:
+        'Designed a robust End-to-End (E2E) test automation framework using C# and Selenium WebDriver for the SauceDemo e-commerce platform. The solution implements the Page Object Model (POM) design pattern to ensure maintainability, featuring custom wait wrappers and efficient locator strategies.',
+      url: 'https://github.com/JacintDev/selenium-pom-csharp',
+      technologies: ['C#', '.NET', 'Selenium WebDriver', 'Page Object Model'],
+      keyFeatures: [
+        'Scalable <span class="text-neutral-700 font-semibold">Page Object Model (POM)</span>',
+        'Advanced Wait & Locator Logic',
+        'Full E2E Scenario Coverage',
       ],
     },
   ];
