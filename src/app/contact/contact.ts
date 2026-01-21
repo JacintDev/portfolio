@@ -1,26 +1,27 @@
 import { AfterViewInit, Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { EmailRequest } from '../interfaces/email-request.interface';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import emailjs from '@emailjs/browser';
 import { AnimationService } from '../services/animation.service';
+import { ContactModal } from '../contact-modal/contact-modal';
 
 @Component({
   selector: 'app-contact',
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule, ContactModal],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
 export class Contact implements AfterViewInit {
   private animationService = inject(AnimationService);
 
+  message: string | null = null;
   @ViewChild('contactSection') contactSection!: ElementRef;
 
-  formData: EmailRequest = {
-    name: '',
-    subject: '',
-    email: '',
-    message: '',
-  };
+  contactForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    subject: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    message: new FormControl('', [Validators.required, Validators.minLength(10)]),
+  });
 
   ngAfterViewInit(): void {
     this.animationService.runOutsideAngular(() => {
@@ -40,7 +41,7 @@ export class Contact implements AfterViewInit {
     this.animationService.scrollTriggerFadeInRight(
       section.querySelector('.contact-form'),
       section,
-      { duration: 0.8, delay: 0.2 }
+      { duration: 0.8, delay: 0.2 },
     );
 
     // Scroll-triggered stagger for contact items
@@ -52,25 +53,24 @@ export class Contact implements AfterViewInit {
   }
 
   public async SendEmail() {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+
     emailjs.init('UXNv5Ku3Ltsnu1LtH');
     try {
       const response = await emailjs.send(
         'service_081v15b',
         'template_rqorwd9',
-        this.formData as any,
-        'UXNv5Ku3Ltsnu1LtH'
+        this.contactForm.value as any,
+        'UXNv5Ku3Ltsnu1LtH',
       );
-      console.log('Email has been sent successfully:', response.status, response.text);
-      alert('Email has been sent successfully!');
-      this.formData = {
-        name: '',
-        subject: '',
-        email: '',
-        message: '',
-      };
+      this.message = 'Your message has been sent successfully!';
+
+      this.contactForm.reset();
     } catch (error) {
-      console.error('There was an error sending the email:', error);
-      alert('There was an error sending the email. Please try again later.');
+      this.message = 'An error occurred while sending your message. Please try again later.';
     }
   }
 }

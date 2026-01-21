@@ -1,6 +1,10 @@
 <div #contactSection class="bg-neutral-50">
   <div class="contact max-w-6xl mx-auto py-16 px-4 md:px-0">
-    <form class="grid md:grid-cols-2 gap-12 order-last" (submit)="(SendEmail)">
+    <form
+      class="grid md:grid-cols-2 gap-12 order-last"
+      [formGroup]="contactForm"
+      (ngSubmit)="SendEmail()"
+    >
       <div class="contact-info">
         <p class="uppercase tracking-widest font-semibold text-emerald-600">Get in touch</p>
         <p class="text-4xl text-neutral-900 mt-4 mb-6 font-semibold">
@@ -129,52 +133,73 @@
             <div class="flex flex-col gap-2">
               <label class="text-sm leading-none text-neutral-700" for="name">Name</label>
               <input
-                [(ngModel)]="formData.name"
+                formControlName="name"
                 id="name"
-                name="name"
                 type="text"
                 placeholder="Your name"
-                class="flex bg-white h-9 rounded-md w-full px-3 py-1 border border-neutral-300 required focus:outline-none focus:border-emerald-600"
+                class="flex bg-white h-9 rounded-md w-full px-3 py-1 border border-neutral-300 focus:outline-none focus:border-emerald-600"
+                [class.border-red-500]="
+                  contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+                "
               />
+              @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+                <span class="text-red-500 text-xs">Name is required (min 2 characters)</span>
+              }
             </div>
             <div class="flex flex-col gap-2">
               <label class="text-sm leading-none text-neutral-700" for="email">Email</label>
               <input
-                [(ngModel)]="formData.email"
+                formControlName="email"
                 id="email"
-                name="email"
-                type="text"
+                type="email"
                 placeholder="Your email"
-                class="flex bg-white h-9 rounded-md w-full px-3 py-1 border border-neutral-300 required focus:outline-none focus:border-emerald-600"
+                class="flex bg-white h-9 rounded-md w-full px-3 py-1 border border-neutral-300 focus:outline-none focus:border-emerald-600"
+                [class.border-red-500]="
+                  contactForm.get('email')?.invalid && contactForm.get('email')?.touched
+                "
               />
+              @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+                <span class="text-red-500 text-xs">Please enter a valid email</span>
+              }
             </div>
           </div>
           <div class="flex flex-col gap-2">
             <label class="text-sm leading-none text-neutral-700" for="subject">Subject</label>
             <input
-              [(ngModel)]="formData.subject"
+              formControlName="subject"
               id="subject"
-              name="subject"
               type="text"
               placeholder="Subject"
-              class="flex bg-white h-9 rounded-md w-full px-3 py-1 border border-neutral-300 required focus:outline-none focus:border-emerald-600"
+              class="flex bg-white h-9 rounded-md w-full px-3 py-1 border border-neutral-300 focus:outline-none focus:border-emerald-600"
+              [class.border-red-500]="
+                contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched
+              "
             />
+            @if (contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched) {
+              <span class="text-red-500 text-xs">Subject is required (min 3 characters)</span>
+            }
           </div>
           <div class="flex flex-col gap-2">
             <label class="text-sm leading-none text-neutral-700" for="message">Message</label>
             <textarea
-              [(ngModel)]="formData.message"
+              formControlName="message"
               id="message"
-              name="message"
               rows="5"
               placeholder="Tell me about your message..."
-              class="flex bg-white min-h-[60px] rounded-md w-full px-3 py-1 border border-neutral-300 required focus:outline-none focus:border-emerald-600 resize-none"
+              class="flex bg-white min-h-[60px] rounded-md w-full px-3 py-1 border border-neutral-300 focus:outline-none focus:border-emerald-600 resize-none"
+              [class.border-red-500]="
+                contactForm.get('message')?.invalid && contactForm.get('message')?.touched
+              "
             ></textarea>
+            @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+              <span class="text-red-500 text-xs">Message is required (min 10 characters)</span>
+            }
           </div>
           <div class="pb-4">
             <button
-              (click)="SendEmail()"
-              class="bg-emerald-600 inline-flex mt-4 w-full py-2 items-center justify-center text-white rounded-md font-semibold gap-2 cursor-pointer hover:bg-emerald-700 transition-all"
+              type="submit"
+              [disabled]="contactForm.invalid"
+              class="bg-emerald-600 inline-flex mt-4 w-full py-2 items-center justify-center text-white rounded-md font-semibold gap-2 cursor-pointer hover:bg-emerald-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -201,4 +226,8 @@
       </div>
     </form>
   </div>
+
+  @if (message) {
+    <app-contact-modal [message]="message" (close)="message = null"></app-contact-modal>
+  }
 </div>
