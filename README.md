@@ -1,59 +1,60 @@
-# Portfolio
+# Jácint Kovács - Personal Portfolio 👨‍💻
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+Welcome to the source code of my personal portfolio website. **This project introduces my software development projects, technical skills, and professional background.**
 
-## Development server
+🚀 **Live Demo:** [https://jacintkovacs.hu](https://jacintkovacs.hu)
 
-To start a local development server, run:
+## 🛠 Tech Stack
 
-```bash
-ng serve
-```
+It is a fully custom-built **Single Page Application (SPA)** engineered for performance and scalability.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+* **Frontend Framework:** [Angular](https://angular.io/)
+* **Styling:** CSS, [TailwindCSS](https://tailwindcss.com/)
+* **Animations:** [GSAP](https://greensock.com/gsap/) for smooth UI interactions
+* **Containerization:** [Docker 🐳](https://www.docker.com/)
+* **Web Server:** [Nginx](https://nginx.org/) 
+* **CI/CD:** GitHub Actions
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 📂 Project Structure
 
-```bash
-ng generate component component-name
-```
+* `.github/workflows`: Contains the CI/CD YAML configuration for automated deployment.
+* `src/app`: Angular components and logic.
+* `Dockerfile`: Multi-stage build configuration.
+* `nginx.conf`: Server configuration for production.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🏃‍♂️ How to Run Locally
 
-```bash
-ng generate --help
-```
+If you want to run this project on your machine:
 
-## Building
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/JacintDev/portfolio.git
+    cd portfolio
+    ```
 
-To build the project run:
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-```bash
-ng build
-```
+3.  **Run the development server:**
+    ```bash
+    ng serve
+    ```
+    Navigate to `http://localhost:4200/`.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+4.  **Run with Docker (Optional):**
+    ```bash
+    docker build -t my-portfolio .
+    docker run -p 8080:80 my-portfolio
+    ```
+    Navigate to `http://localhost:8080/`.
 
-## Running unit tests
+## 📬 Contact
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+* **Website:** [jacintkovacs.hu](https://jacintkovacs.hu)
+* **LinkedIn:** [linkedin.com/in/jacint-kovacs/](https://www.linkedin.com/in/jacint-kovacs/)
+* **Email:** kovacs.jacint02@gmail.com
+---
+*© 2026 Jácint Kovács. All rights reserved.*
